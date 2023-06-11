@@ -1,0 +1,8 @@
+html,body {
+    direction: rtl
+}
+
+jdp-container {
+    z-index: 9999 !important
+}
+
