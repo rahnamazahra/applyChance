@@ -10,8 +10,8 @@
                         <hr>
                         <label for="name">نام و نام خانوادگی:</label>
                         <input type="text" id="name" required wire:model.defer="name" class="input-email-account" style="text-align:right">
-                        <label for="mobile">شماره موبایل:</label>
-                        <input type="text" required id="mobile" wire:model.defer="mobile" class="input-email-account" placeholder="">
+                        <label for="phone">شماره موبایل:</label>
+                        <input type="text" required id="phone" wire:model.defer="phone" class="input-email-account" placeholder="">
 
                         <div class="parent-btn">
                             <button class="dk-btn dk-btn-info" type="submit">

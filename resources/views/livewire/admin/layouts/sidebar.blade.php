@@ -6,7 +6,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="">
-            <img alt="Logo" src="{{ asset('assets/media/logos/logo_apply.png') }}" class="h-25px logo"/>
+            <img alt="Logo" src="{{ asset('admin/assets/media/logos/logo_apply.png') }}" class="h-25px logo"/>
             <span>موقعیت تحصیلی</span>
         </a>
         <!--end::Logo-->

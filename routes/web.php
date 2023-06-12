@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', App\Http\Livewire\Site\Home\Index::class)->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register', App\Http\Livewire\Site\User\Register::class)->name('register');
+Route::get('/login', App\Http\Livewire\Site\User\Login::class)->name('login');
+Route::get('/logout', [HomeController::class,'logout'])->name('logout');
+Route::get('/verify/{id}', App\Http\Livewire\Site\User\VerifyLogin::class)->name('verify');

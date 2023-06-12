@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
-Route::get('/login', App\Http\Livewire\Admin\User\Login::class)->name('login');
-Route::get('/register', App\Http\Livewire\Admin\User\Register::class)->name('register');
+
+

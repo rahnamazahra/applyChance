@@ -1,15 +1,7 @@
 @section('title','ورود')
 <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-cover bgi-attachment-fixed">
-    <!--begin::Content-->
     <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-
-        <!--begin::Wrapper-->
         <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-            <!--begin::Logo-->
-            <div class="d-flex justify-content-between mb-20">
-                <img alt="Logo" src="" class="h-60px"/>
-            </div>
-            <!--end::Logo-->
             <!--begin::Form-->
             <form class="form w-100" wire:submit.prevent='LoginForm'>
 
@@ -23,7 +15,7 @@
                 <!--begin::Input group-->
                 <div class="fv-row mb-10">
                     <label class="form-label fs-6 fw-bolder text-dark">تلفن همراه</label>
-                    <input class="form-control form-control-lg form-control-solid" type="tel" wire:model.defer="mobile"/>
+                    <input class="form-control form-control-lg form-control-solid" type="tel" wire:model.defer="phone"/>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Actions-->
