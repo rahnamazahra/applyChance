@@ -2,27 +2,33 @@
 
 namespace App\Http\Livewire\Site\User;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Login extends Component
 {
-     public User $user;
+    public User $user;
     public $phone, $password;
     public function mount()
     {
         $this->user = new User;
     }
-    protected $rules = [
-      'phone' => 'required|exists:users,phone|size:11',
-    ];
 
     public function LoginForm()
     {
-        $this->validate();
+
+        $this->validate(['phone' => 'required|size:11']);
+
         $user = User::where('phone', $this->phone)->first();
 
-        if(isset($user))
+        if($user === null)
+        {
+            $this->emit('toast', 'error', 'این شماره موبایل ثبت نشده است', '#FFFFFF' ,'#CB4335');
+        }
+        else
         {
             $phone = $user->phone;
             $code  = mt_rand(1111, 9999);    // Generate code
@@ -31,11 +37,6 @@ class Login extends Component
             $this->emit('toast', 'success', 'کد پیامکی برای شما ارسال شد', '#FFFFFF' ,'#229954');
             to_route('admin.home');
             return to_route('verify', $user->id);
-        }
-        else
-        {
-            $this->emit('toast', 'error', 'شماره موبایل وارد شده صحیح نمی باشد', '#FFFFFF' ,'#CB4335');
-
         }
 
     }
