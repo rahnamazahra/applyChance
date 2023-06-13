@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
     showConfirmButton: false,
     timer: 7000,
     timerProgressBar: true,
@@ -14,10 +14,12 @@ const Toast = Swal.mixin({
 });
 
 document.addEventListener("livewire:load", () => {
-    Livewire.on("toast", (type, message) => {
+    Livewire.on("toast", (type, message, color, background) => {
         Toast.fire({
             icon: type,
             title: message,
+            color: color,
+            background: background,
         });
     });
 });
