@@ -213,6 +213,7 @@ return [
         'weight'                => 'وزن',
         'duration'              => 'مدت زمان',
         'sequence_number'       => 'شماره ترتیب',
+        'slug'                  => 'برچسب لاتین',
         'project_id'            => 'پروژه',
         'subproject_id'         => 'زیرپروژه',
     ],

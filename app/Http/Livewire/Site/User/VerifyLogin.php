@@ -28,12 +28,12 @@ class VerifyLogin extends Component
         if(Hash::check($this->password, $this->user->password))
         {
             Auth::loginUsingId($this->user->id);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد','#FFFFFF' ,'#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             to_route('admin.home');
         }
         else
         {
-            $this->emit('toast', 'error', 'کد وارد شده صحیح نمی باشد','#FFFFFF' ,'#CB4335');
+            $this->emit('toast', 'error', 'کد وارد شده صحیح نمی باشد', '#FFFFFF', '#CB4335');
         }
     }
 

@@ -31,6 +31,7 @@
 		</div>
         <!--begin::Javascript-->
 	    @include('livewire.admin.layouts.scripts')
+        @yield('custom_scripts')
     	<!--end::Javascript-->
 	</body>
 </html>

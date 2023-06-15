@@ -1,14 +1,5 @@
 @section('title','ورود')
-<?php
-    if ($errors->any())
-    {
-        foreach ($errors->all() as $error)
-        {
-            $this->emit('toast', 'error', 'شماره موبایل وارد شده باید 11 رقم باشد', '#FFFFFF' ,'#CB4335');
-
-        }
-    }
-?>
+@include('livewire.admin.toast.errortoast')
 <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-cover bgi-attachment-fixed">
     <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
         <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">

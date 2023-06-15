@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
+Route::get('/country', App\Http\Livewire\Admin\Country\Index::class)->name('admin.country');
 
 
