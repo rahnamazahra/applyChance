@@ -1,116 +1,122 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Country;
+namespace App\Http\Livewire\Admin\City;
 
+use App\Models\City;
 use App\Models\Country;
 use Livewire\Component;
 use Livewire\WithPagination;
-
 class Index extends Component
 {
     use WithPagination;
 
-    public  $countryId, $title, $slug;
-    public $updateCountry = false;
-    public $addCountry    = false;
+    public  $CityId, $title, $slug, $country_id;
+    public $updateCity = false;
+    public $addCity    = false;
     public $searchTerm = "";
 
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.country.index', ['countries' => Country::where('title', 'like', $searchTerm)->paginate(1)]);
+        return view('livewire.admin.city.index', [ 'countries' => Country::pluck('id', 'title'), 'cities' => City::where('title', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
-        'title' => 'required',
-        'slug'  => 'required'
+        'country_id'=> 'required',
+        'title'     => 'required',
+        'slug'      => 'required'
     ];
     public function resetFields()
     {
-        $this->title = '';
-        $this->slug  = '';
+        $this->CityId     = '';
+        $this->country_id = '';
+        $this->title      = '';
+        $this->slug       = '';
     }
     public function actionMode()
     {
         $this->resetFields();
 
-        $this->addCountry    = true;
-        $this->updateCountry = false;
+        $this->addCity    = true;
+        $this->updateCity = false;
     }
 
-    public function createCountry()
+    public function createCity()
     {
         $this->validate();
         try {
-            Country::create([
-                'title' => $this->title,
-                'slug'  => $this->slug
+            City::create([
+                'country_id' => $this->country_id,
+                'title'      => $this->title,
+                'slug'       => $this->slug
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->addCity = false;
             $this->resetFields();
-            $this->addCountry = false;
             $this->render();
         } catch (\Exception $ex) {
             $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
         }
     }
-    public function editCountry($id)
+    public function editCity($id)
     {
         $this->resetFields();
 
         try {
-            $country = Country::findOrFail($id);
-            if($country)
+            $City = City::findOrFail($id);
+            if($City)
             {
-                $this->title         = $country->title;
-                $this->slug          = $country->slug;
-                $this->countryId     = $country->id;
-                $this->updateCountry = true;
-                $this->addCountry    = false;
+                $this->CityId     = $City->id;
+                $this->country_id = $City->country_id;
+                $this->title      = $City->title;
+                $this->slug       = $City->slug;
+                $this->updateCity = true;
+                $this->addCity    = false;
             }
         } catch (\Exception $ex) {
             $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
         }
     }
-    public function updateCountry()
+    public function updateCity()
     {
         $this->validate();
         try {
-            Country::whereId($this->countryId)->update([
-                'title' => $this->title,
-                'slug'  => $this->slug
+            City::whereId($this->CityId)->update([
+                'country_id' => $this->country_id,
+                'title'      => $this->title,
+                'slug'       => $this->slug
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->resetFields();
-            $this->updateCountry = false;
+            $this->updateCity = false;
             $this->render();
         } catch (\Exception $ex) {
             $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
         }
     }
-    public function cancelCountry()
+    public function cancelCity()
     {
-        $this->addCountry    = false;
-        $this->updateCountry = false;
+        $this->addCity    = false;
+        $this->updateCity = false;
         $this->resetFields();
         $this->render();
     }
-    public function deletestep1Country($id)
+    public function deletestep1City($id)
     {
         try {
-            $country = Country::findOrFail($id);
-            if($country)
+            $City = City::findOrFail($id);
+            if($City)
             {
-                $this->countryId = $country->id;
+                $this->CityId = $City->id;
             }
         } catch (\Exception $ex) {
             $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
         }
     }
-    public function deleteCountry()
+    public function deleteCity()
     {
         try {
-            Country::find($this->countryId)->delete();
+            City::find($this->CityId)->delete();
             $this->resetFields();
             $this->render();
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');

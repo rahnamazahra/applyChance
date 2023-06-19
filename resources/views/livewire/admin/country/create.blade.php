@@ -1,4 +1,4 @@
-<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#CountryCreateModal">جدید +</button>
+<button wire:click="actionMode()" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#CountryCreateModal">جدید +</button>
 
 <!--begin::Modal-->
 <div wire:ignore.self class="modal fade" id="CountryCreateModal" tabindex="-1" aria-hidden="true">

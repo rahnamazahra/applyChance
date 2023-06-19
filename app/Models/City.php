@@ -10,4 +10,13 @@ class City extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['title', 'country_id', 'slug'];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+     public function univercities()
+    {
+        return $this->hasMany(Univercity::class, 'city_id');
+    }
 }

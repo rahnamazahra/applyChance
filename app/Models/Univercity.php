@@ -8,7 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Univercity extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'country_id', 'city_id', 'slug'];
+    protected $table = 'univercities';
+    protected $fillable = ['country_id', 'city_id', 'title', 'slug'];
     public $timestamps = false;
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }
