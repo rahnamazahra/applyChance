@@ -10,30 +10,24 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $GradeId, $title, $slug, $country_id, $city_id;
+    public $GradeId, $title;
     public $updateGrade = false;
     public $addGrade    = false;
-    public $searchTerm = "";
+    public $searchTerm  = "";
 
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.grade.index');
+        return view('livewire.admin.grade.index', ['grades' => Grade::where('title', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
-        'city_id'   => 'required',
-        'country_id'=> 'required',
         'title'     => 'required',
-        'slug'      => 'required'
     ];
     public function resetFields()
     {
-        $this->GradeId     = '';
-        $this->country_id       = '';
-        $this->city_id          = '';
-        $this->title            = '';
-        $this->slug             = '';
+        $this->GradeId = '';
+        $this->title   = '';
     }
     public function actionMode()
     {
@@ -48,10 +42,7 @@ class Index extends Component
         $this->validate();
         try {
             Grade::create([
-                'city_id'    => $this->city_id,
-                'country_id' => $this->country_id,
                 'title'      => $this->title,
-                'slug'       => $this->slug
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->addGrade = false;
@@ -70,10 +61,7 @@ class Index extends Component
             if($Grade)
             {
                 $this->GradeId     = $Grade->id;
-                $this->city_id          = $Grade->city_id;
-                $this->country_id       = $Grade->country_id;
-                $this->title            = $Grade->title;
-                $this->slug             = $Grade->slug;
+                $this->title       = $Grade->title;
                 $this->updateGrade = true;
                 $this->addGrade    = false;
             }
@@ -86,10 +74,7 @@ class Index extends Component
         $this->validate();
         try {
             Grade::whereId($this->GradeId)->update([
-                'city_id'    => $this->city_id,
-                'country_id' => $this->country_id,
                 'title'      => $this->title,
-                'slug'       => $this->slug
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->resetFields();
@@ -106,7 +91,7 @@ class Index extends Component
         $this->resetFields();
         $this->render();
     }
-    public function deletestep1Grade($id)
+    public function ConfirmDeleteGrade($id)
     {
         try {
             $Grade = Grade::findOrFail($id);

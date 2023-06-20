@@ -101,7 +101,7 @@ class Index extends Component
         $this->resetFields();
         $this->render();
     }
-    public function deletestep1City($id)
+    public function ConfirmDeleteCity($id)
     {
         try {
             $City = City::findOrFail($id);

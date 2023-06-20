@@ -45,13 +45,13 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <label for="city_id" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام شهر </label>
-                                    <select class="form-select form-select-solid" wire:model.defer="city_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                         @if (empty($countryId))
-                                            <option value="">-- ابتدا کشور مورد نظر را انتخاب نمایید --</option>
-                                        @else
-                                            @foreach($cities as $title=>$id)
-                                                 <option value="{{ $id }}">{{ $title }}</option>
-                                            @endforeach
+                                    <select class="form-select form-select-solid" wire:change="$emit('cityChanged', $event.target.value)" id="city_id" name="city_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        @if (!is_null($countryId))
+                                            @if($cities)
+                                                @foreach($cities as $title=>$id)
+                                                    <option value="{{ $id }}">{{ $title }}</option>
+                                                @endforeach
+                                            @endif
                                         @endif
                                     </select>
                                 </div>

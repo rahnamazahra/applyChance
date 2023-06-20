@@ -17,3 +17,5 @@ Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
 Route::get('/country', App\Http\Livewire\Admin\Country\Index::class)->name('admin.country');
 Route::get('/city', App\Http\Livewire\Admin\City\Index::class)->name('admin.city');
 Route::get('/univercity', App\Http\Livewire\Admin\Univercity\Index::class)->name('admin.univercity');
+Route::get('/grade', App\Http\Livewire\Admin\Grade\Index::class)->name('admin.grade');
+

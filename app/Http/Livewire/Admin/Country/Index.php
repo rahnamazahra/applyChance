@@ -95,7 +95,7 @@ class Index extends Component
         $this->resetFields();
         $this->render();
     }
-    public function deletestep1Country($id)
+    public function ConfirmDeleteCountry($id)
     {
         try {
             $country = Country::findOrFail($id);

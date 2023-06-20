@@ -106,7 +106,7 @@ class Index extends Component
         $this->resetCategorys();
         $this->render();
     }
-    public function deletestep1Category($id)
+    public function ConfirmDeleteCategory($id)
     {
         try {
             $Category = Category::findOrFail($id);

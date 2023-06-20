@@ -1,4 +1,4 @@
-<button data-bs-toggle="modal" data-bs-target="#CityDeleteModal" wire:click= "ConfirmDeleteCity({{$city->id}})" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حذف">
+<button data-bs-toggle="modal" data-bs-target="#GradeDeleteModal" wire:click= "ConfirmDeleteGrade({{$grade->id}})" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حذف">
     <span class="svg-icon svg-icon-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
@@ -8,7 +8,7 @@
     </span>
 </button>
 <!--begin::Modal-->
-<div wire:ignore.self class="modal fade" id="CityDeleteModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="GradeDeleteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-between">
@@ -28,8 +28,8 @@
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" wire:click.prevent="deleteCity()" class="btn btn-primary" data-bs-dismiss="modal">بله</button>
-                <button type="button" wire:click.prevent="cancelCity()" class="btn btn-light" data-bs-dismiss="modal">انصراف</button>
+                <button type="button" wire:click.prevent="deleteGrade()" class="btn btn-primary" data-bs-dismiss="modal">بله</button>
+                <button type="button" wire:click.prevent="cancelGrade()" class="btn btn-light" data-bs-dismiss="modal">انصراف</button>
             </div>
         </form>
         </div>

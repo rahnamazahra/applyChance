@@ -106,7 +106,7 @@ class Index extends Component
         $this->resetFields();
         $this->render();
     }
-    public function deletestep1Field($id)
+    public function ConfirmDeleteField($id)
     {
         try {
             $Field = Field::findOrFail($id);

@@ -129,7 +129,7 @@ class Index extends Component
         $this->resetFields();
         $this->render();
     }
-    public function deletestep1Univercity($id)
+    public function ConfirmDeleteUnivercity($id)
     {
         try {
             $Univercity = Univercity::findOrFail($id);
