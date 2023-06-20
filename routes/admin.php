@@ -18,4 +18,5 @@ Route::get('/country', App\Http\Livewire\Admin\Country\Index::class)->name('admi
 Route::get('/city', App\Http\Livewire\Admin\City\Index::class)->name('admin.city');
 Route::get('/univercity', App\Http\Livewire\Admin\Univercity\Index::class)->name('admin.univercity');
 Route::get('/grade', App\Http\Livewire\Admin\Grade\Index::class)->name('admin.grade');
-
+Route::get('/field', App\Http\Livewire\Admin\Field\Index::class)->name('admin.field');
+Route::get('/category', App\Http\Livewire\Admin\Category\Index::class)->name('admin.category');

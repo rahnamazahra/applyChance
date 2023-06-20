@@ -1,6 +1,6 @@
-<button wire:click="actionMode()" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#CityCreateModal">جدید +</button>
+<button wire:click="actionMode()" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#FieldCreateModal">جدید +</button>
 <!--begin::Modal-->
-<div wire:ignore.self class="modal fade" id="CityCreateModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="FieldCreateModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-between">
@@ -22,10 +22,10 @@
                         <div wire:ignore>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="country_id" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام کشور </label>
-                                    <select class="form-select form-select-solid" wire:model.defer="country_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <label for="category_id" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام دپارتمان </label>
+                                    <select class="form-select form-select-solid" wire:model.defer="category_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value=""></option>
-                                        @foreach($countries as $title=>$id)
+                                        @foreach($categories as $title=>$id)
                                             <option value="{{ $id }}">{{ $title }}</option>
                                         @endforeach
                                     </select>
@@ -34,17 +34,17 @@
                         </div>
                     </div>
                     <div class="col-md-12 fv-row">
-                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام شهر</label>
+                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">رشته تحصیلی</label>
                         <input type="text" class="form-control form-control-solid" wire:model.defer="title"/>
                     </div>
                     <div class="col-md-12 fv-row">
-                        <label for="slug"  class="required d-flex align-items-center fs-6 fw-bold mb-2">نام لاتین شهر</label>
+                        <label for="slug" class="required d-flex align-items-center fs-6 fw-bold mb-2">رشته تحصیلی لاتین</label>
                         <input type="text" class="form-control form-control-solid" wire:model.defer="slug"/>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" wire:click.prevent="createCity()" class="btn btn-primary" data-bs-dismiss="modal">ذخیره</button>
-                    <button type="button" wire:click.prevent="cancelCity()" class="btn btn-light"   data-bs-dismiss="modal">انصراف</button>
+                    <button type="button" wire:click.prevent="createField()" class="btn btn-primary" data-bs-dismiss="modal">ذخیره</button>
+                    <button type="button" wire:click.prevent="cancelField()" class="btn btn-light"   data-bs-dismiss="modal">انصراف</button>
                 </div>
         </form>
         </div>

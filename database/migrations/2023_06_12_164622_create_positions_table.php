@@ -18,10 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('field_id');
             $table->string('title');
             $table->text('description');
-
-            $table->foreign('univercity_id')->references('id')->on('univercities')->cascadeOnDelete();
-            $table->foreign('grade_id')->references('id')->on('grades')->cascadeOnDelete();
             $table->foreign('field_id')->references('id')->on('fields')->cascadeOnDelete();
+            $table->foreign('grade_id')->references('id')->on('grades')->cascadeOnDelete();
+            $table->foreign('univercity_id')->references('id')->on('univercities')->cascadeOnDelete();
         });
     }
 

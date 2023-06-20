@@ -10,7 +10,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $CategoryId, $title, $slug, $country_id, $city_id;
+    public $CategoryId, $title, $slug;
     public $updateCategory = false;
     public $addCategory    = false;
     public $searchTerm     = "";
@@ -18,20 +18,16 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.category.index');
+        return view('livewire.admin.category.index', ['categories' => Category::where('title', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
-        'city_id'   => 'required',
-        'country_id'=> 'required',
         'title'     => 'required',
         'slug'      => 'required'
     ];
     public function resetCategorys()
     {
-        $this->CategoryId          = '';
-        $this->country_id       = '';
-        $this->city_id          = '';
+        $this->CategoryId       = '';
         $this->title            = '';
         $this->slug             = '';
     }
@@ -48,8 +44,6 @@ class Index extends Component
         $this->validate();
         try {
             Category::create([
-                'city_id'    => $this->city_id,
-                'country_id' => $this->country_id,
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
@@ -70,8 +64,6 @@ class Index extends Component
             if($Category)
             {
                 $this->CategoryId     = $Category->id;
-                $this->city_id          = $Category->city_id;
-                $this->country_id       = $Category->country_id;
                 $this->title            = $Category->title;
                 $this->slug             = $Category->slug;
                 $this->updateCategory = true;
@@ -86,8 +78,6 @@ class Index extends Component
         $this->validate();
         try {
             Category::whereId($this->CategoryId)->update([
-                'city_id'    => $this->city_id,
-                'country_id' => $this->country_id,
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);

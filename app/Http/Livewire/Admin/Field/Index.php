@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Field;
 
+use App\Models\Category;
 use App\Models\Field;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,7 +11,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $FieldId, $title, $slug, $country_id, $city_id;
+    public $FieldId, $title, $slug, $category_id;
     public $updateField = false;
     public $addField    = false;
     public $searchTerm = "";
@@ -18,22 +19,20 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.field.index');
+        return view('livewire.admin.field.index', ['categories'=> Category::pluck('id','title'), 'fields' => Field::where('title', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
-        'city_id'   => 'required',
-        'country_id'=> 'required',
-        'title'     => 'required',
-        'slug'      => 'required'
+        'category_id' => 'required',
+        'title'       => 'required',
+        'slug'        => 'required'
     ];
     public function resetFields()
     {
-        $this->FieldId          = '';
-        $this->country_id       = '';
-        $this->city_id          = '';
-        $this->title            = '';
-        $this->slug             = '';
+        $this->FieldId     = '';
+        $this->category_id = '';
+        $this->title       = '';
+        $this->slug        = '';
     }
     public function actionMode()
     {
@@ -48,10 +47,9 @@ class Index extends Component
         $this->validate();
         try {
             Field::create([
-                'city_id'    => $this->city_id,
-                'country_id' => $this->country_id,
-                'title'      => $this->title,
-                'slug'       => $this->slug
+                'category_id' => $this->category_id,
+                'title'       => $this->title,
+                'slug'        => $this->slug
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->addField = false;
@@ -70,10 +68,9 @@ class Index extends Component
             if($Field)
             {
                 $this->FieldId     = $Field->id;
-                $this->city_id          = $Field->city_id;
-                $this->country_id       = $Field->country_id;
-                $this->title            = $Field->title;
-                $this->slug             = $Field->slug;
+                $this->category_id = $Field->category_id;
+                $this->title       = $Field->title;
+                $this->slug        = $Field->slug;
                 $this->updateField = true;
                 $this->addField    = false;
             }
@@ -86,10 +83,9 @@ class Index extends Component
         $this->validate();
         try {
             Field::whereId($this->FieldId)->update([
-                'city_id'    => $this->city_id,
-                'country_id' => $this->country_id,
-                'title'      => $this->title,
-                'slug'       => $this->slug
+                'category_id' => $this->category_id,
+                'title'       => $this->title,
+                'slug'        => $this->slug
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->resetFields();

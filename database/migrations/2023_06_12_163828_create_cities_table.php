@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('country_id');
             $table->string('title');
             $table->string('slug');
+            $table->foreign('country_id')->references('id')->on('countries')->cascadeOnDelete();
+
         });
     }
 

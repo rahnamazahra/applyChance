@@ -25,7 +25,8 @@
                 <thead>
                     <tr>
                         <th class="text-center">ردیف</th>
-                        <th class="text-center">نام</th>
+                        <th class="text-center">عنوان تحصیلی</th>
+                        <th class="text-center">برچسب لاتین</th>
                         <th class="text-center">اقدامات</th>
                     </tr>
                 </thead>
@@ -42,9 +43,10 @@
                                     @else
                                         <div class="position-absolute start-0 top-0 w-4px h-100 rounded-2 bg-info"></div>
                                     @endif
-                                        <a href="#" class="mb-1 text-dark text-hover-primary fw-bolder"> {{ $grade->title ?? '-' }}</a>
+                                        <a href="#" class="mb-1 text-dark text-hover-primary fw-bolder"> {{ $grade->title }}</a>
                                 </div>
                             </td>
+                            <td class="text-center">{{ $grade->slug }}</td>
                             <td class="text-center">
                                 <div class="btn btn-group-sm">
                                     @include('livewire.admin.grade.update')

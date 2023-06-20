@@ -10,7 +10,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $GradeId, $title;
+    public $GradeId, $title, $slug;
     public $updateGrade = false;
     public $addGrade    = false;
     public $searchTerm  = "";
@@ -28,6 +28,7 @@ class Index extends Component
     {
         $this->GradeId = '';
         $this->title   = '';
+        $this->slug   = '';
     }
     public function actionMode()
     {
@@ -43,6 +44,7 @@ class Index extends Component
         try {
             Grade::create([
                 'title'      => $this->title,
+                'slug'       => $this->slug,
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->addGrade = false;
@@ -62,6 +64,7 @@ class Index extends Component
             {
                 $this->GradeId     = $Grade->id;
                 $this->title       = $Grade->title;
+                $this->slug        = $Grade->slug;
                 $this->updateGrade = true;
                 $this->addGrade    = false;
             }
@@ -75,6 +78,7 @@ class Index extends Component
         try {
             Grade::whereId($this->GradeId)->update([
                 'title'      => $this->title,
+                'slug'       => $this->slug,
             ]);
             $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
             $this->resetFields();

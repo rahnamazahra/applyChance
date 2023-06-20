@@ -9,5 +9,10 @@ class Category extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'categories';
     protected $fillable = ['title', 'slug'];
+    public function fields()
+    {
+        return $this->hasMany(Univercity::class, 'category_id');
+    }
 }

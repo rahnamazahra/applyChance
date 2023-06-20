@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fildes', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
            $table->id();
-           $table->string('title');
+            $table->unsignedBigInteger('category_id');
+            $table->string('title');
+            $table->string('slug');
+
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
         });
+
     }
 
     /**
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fildes');
+        Schema::dropIfExists('fields');
     }
 };

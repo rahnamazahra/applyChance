@@ -1,6 +1,6 @@
-<button wire:click="actionMode()" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#GradeCreateModal">جدید +</button>
+<button wire:click="actionMode()" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#CategoryCreateModal">جدید +</button>
 <!--begin::Modal-->
-<div wire:ignore.self class="modal fade" id="GradeCreateModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="CategoryCreateModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-between">
@@ -19,17 +19,17 @@
             <form>
                 <div class="modal-body">
                     <div class="col-md-12 fv-row">
-                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">هنوان تحصیلی</label>
+                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2"> نام دپارتمان</label>
                         <input type="text" class="form-control form-control-solid" wire:model.defer="title"/>
                     </div>
                     <div class="col-md-12 fv-row">
-                        <label for="slug" class="required d-flex align-items-center fs-6 fw-bold mb-2">عنوان تحصیلی لاتین</label>
+                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2"> نام دپارتمان لاتین</label>
                         <input type="text" class="form-control form-control-solid" wire:model.defer="slug"/>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" wire:click.prevent="createGrade()" class="btn btn-primary" data-bs-dismiss="modal">ذخیره</button>
-                    <button type="button" wire:click.prevent="cancelGrade()" class="btn btn-light"   data-bs-dismiss="modal">انصراف</button>
+                    <button type="button" wire:click.prevent="createCategory()" class="btn btn-primary" data-bs-dismiss="modal">ذخیره</button>
+                    <button type="button" wire:click.prevent="cancelCategory()" class="btn btn-light"   data-bs-dismiss="modal">انصراف</button>
                 </div>
         </form>
         </div>
