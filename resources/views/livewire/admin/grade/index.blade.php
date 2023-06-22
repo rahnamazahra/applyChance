@@ -56,7 +56,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="3" class="text-center">  ثبت نشده است.</td>
+                            <td colspan="4" class="text-center">  ثبت نشده است.</td>
                         </tr>
                     @endforelse
                 @endif

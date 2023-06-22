@@ -9,11 +9,10 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-
     use WithPagination;
-
-    public $univercityId, $title, $slug, $city_id;
+    public $univercityId, $title, $slug;
     public $countryId        = NULL;
+    public $city_id          = NULL;
     public $updateUnivercity = false;
     public $addUnivercity    = false;
     public $searchTerm       = "";
@@ -25,6 +24,7 @@ class Index extends Component
     public function mount()
     {
         $this->cities = collect();
+         $this->city_id = NULL;
     }
     public function render()
     {
@@ -34,22 +34,26 @@ class Index extends Component
 
     public function updatedCountryId($countryId)
     {
-        if (!is_null($countryId)) {
+        if (!is_null($countryId))
+        {
             $this->cities = City::where('country_id', $countryId)->pluck('id', 'title');
-        }
+            $this->city_id = NULL;
 
+        }
     }
-    protected $rules = [
-        'city_id'    => 'required',
-        'countryId'  => 'required',
-        'title'      => 'required',
-        'slug'       => 'required'
-    ];
+    public function cityChanged($value)
+    {
+        $this->city_id = $value;
+    }
+    public function setCity_id($city_id)
+    {
+        $this->syncInput('city_id', $city_id);
+    }
     public function resetFields()
     {
         $this->univercityId     = '';
-        $this->countryId        = Null;
-        $this->city_id          = '';
+        $this->countryId        = NULL;
+        $this->city_id          = NULL;
         $this->title            = '';
         $this->slug             = '';
         $this->cities           = [];
@@ -57,16 +61,15 @@ class Index extends Component
     public function actionMode()
     {
         $this->resetFields();
-
         $this->addUnivercity    = true;
         $this->updateUnivercity = false;
     }
-
-    public function cityChanged($value)
-    {
-        $this->city_id = $value;
-    }
-
+    protected $rules = [
+        'city_id'    => 'required',
+        'countryId'  => 'required',
+        'title'      => 'required',
+        'slug'       => 'required'
+    ];
     public function createUnivercity()
     {
         try {
@@ -87,7 +90,6 @@ class Index extends Component
     public function editUnivercity($id)
     {
         $this->resetFields();
-
         try {
             $Univercity = Univercity::findOrFail($id);
             if($Univercity)
@@ -97,6 +99,7 @@ class Index extends Component
                 $this->countryId        = $Univercity->country_id;
                 $this->title            = $Univercity->title;
                 $this->slug             = $Univercity->slug;
+                $this->cities           = City::where('country_id', $this->countryId)->pluck('id', 'title');
                 $this->updateUnivercity = true;
                 $this->addUnivercity    = false;
             }
@@ -104,6 +107,7 @@ class Index extends Component
             $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
         }
     }
+
     public function updateUnivercity()
     {
         $this->validate();

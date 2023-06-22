@@ -1,4 +1,4 @@
-<button data-bs-toggle="modal" data-bs-target="#UnivercityUpdateModal" wire:click="editUnivercity({{ $univercity->id }})"  class="btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ویرایش">
+<button id="btn_edit" data-bs-toggle="modal" data-bs-target="#UnivercityUpdateModal" wire:click="editUnivercity({{ $univercity->id }})"  class="btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ویرایش">
     <span class="svg-icon svg-icon-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path opaUnivercity="0.3"d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor"></path>
@@ -23,15 +23,14 @@
                 </div>
                 <!--end::Close-->
             </div>
-            <form>
-                <div class="modal-body">
+              <div class="modal-body">
                     <div class="col-md-12 fv-row">
-                        <div wire:ignore>
+                        <div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="countryId" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام کشور </label>
-                                    <select class="form-select form-select-solid" wire:model.defer="countryId" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                        <option value=""></option>
+                                    <label for="country_id" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام کشور </label>
+                                    <select class="form-select form-select-solid" wire:model.lazy="countryId" name="country_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option value="" selected>کشور مورد نظر را انتخاب نمایید</option>
                                         @foreach($countries as $title=>$id)
                                             <option value="{{ $id }}">{{ $title }}</option>
                                         @endforeach
@@ -40,42 +39,37 @@
                             </div>
                         </div>
                     </div>
-                     <div class="col-md-12 fv-row">
-                        <div wire:ignore>
+                    @if(!is_null($countryId))
+                    <div class="col-md-12 fv-row">
+                        <div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <label for="city_id" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام شهر </label>
-                                    <select class="form-select form-select-solid" wire:change="$emit('cityChanged', $event.target.value)" id="city_id" name="city_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                        @if (!is_null($countryId))
-                                            @if($cities)
-                                                @foreach($cities as $title=>$id)
-                                                    <option value="{{ $id }}">{{ $title }}</option>
-                                                @endforeach
-                                            @endif
-                                        @endif
+                                    <select class="form-select form-select-solid" wire:model.lazy="city_id" name="city_id" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option value="" selected>شهر مورد نظر را انتخاب نمایید</option>
+                                        @foreach($cities as $title=>$id)
+                                            <option value="{{ $id }}">{{ $title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   <div class="col-md-12 fv-row">
+                    @endif
+                    <div class="col-md-12 fv-row">
                         <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام دانشگاه فارسی</label>
-                        <input type="text" class="form-control form-control-solid" wire:model.defer="title"/>
+                        <input type="text" class="form-control form-control-solid" wire:model.lazy="title"/>
                     </div>
                     <div class="col-md-12 fv-row">
                         <label for="slug"  class="required d-flex align-items-center fs-6 fw-bold mb-2">نام دانشگاه لاتین</label>
-                        <input type="text" class="form-control form-control-solid" wire:model.defer="slug"/>
+                        <input type="text" class="form-control form-control-solid" wire:model.lazy="slug"/>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" wire:click.prevent="updateUnivercity()" class="btn btn-primary" data-bs-dismiss="modal">ذخیره</button>
                     <button type="button" wire:click.prevent="cancelUnivercity()" class="btn btn-light"   data-bs-dismiss="modal">انصراف</button>
                 </div>
-            </form>
         </div>
     </div>
 </div>
 <!--end::Modal-->
-
-
-

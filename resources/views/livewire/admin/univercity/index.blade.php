@@ -28,6 +28,7 @@
                         <th class="text-center">نام فارسی</th>
                         <th class="text-center">نام لاتین</th>
                         <th class="text-center">کشور</th>
+                        <th class="text-center">شهر</th>
                         <th class="text-center">اقدامات</th>
                     </tr>
                 </thead>
@@ -58,6 +59,11 @@
                                 </div>
                             </td>
                             <td class="text-center">
+                                <div class="position-relative ps-6 pe-3 py-2">
+                                    <span class="mb-1 text-dark"> {{ $univercity->city->title }} </span>
+                                </div>
+                            </td>
+                            <td class="text-center">
                                 <div class="btn btn-group-sm">
                                     @include('livewire.admin.univercity.update')
                                     @include('livewire.admin.univercity.delete')
@@ -66,7 +72,7 @@
                         </tr>
                     @endforeach
                 @else
-                    <td colspan="4" class="text-center">  ثبت نشده است.</td>
+                    <td colspan="6" class="text-center">  ثبت نشده است.</td>
                 @endif
                 </tbody>
             </table>

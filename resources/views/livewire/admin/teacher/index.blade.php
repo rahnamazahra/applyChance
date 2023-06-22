@@ -1,4 +1,4 @@
-@section('title', 'شهرها')
+@section('title', 'استاد')
 @include('livewire.admin.toast.errortoast')
 <div class="card">
       <div class="card-header">
@@ -14,27 +14,27 @@
         <div class="card-toolbar">
             <div class="d-flex justify-content-start bd-highlight mb-8 mt-8">
                 <div class="p-2 bd-highlight">
-                    @include('livewire.admin.city.create')
+                    @include('livewire.admin.teacher.create')
                 </div>
             </div>
         </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table id="city_list" class="table table-responsive table-row-dashed align-middle fs-6 gy-4 my-0 pb-3 dataTable" data-kt-table-widget-3="all">
+            <table id="teacher_list" class="table table-responsive table-row-dashed align-middle fs-6 gy-4 my-0 pb-3 dataTable" data-kt-table-widget-3="all">
                 <thead>
                     <tr>
                         <th class="text-center">ردیف</th>
-                        <th class="text-center">نام فارسی</th>
-                        <th class="text-center">نام لاتین</th>
-                        <th class="text-center">کشور</th>
+                        <th class="text-center">نام</th>
+                        <th class="text-center">ایمیل</th>
+                        <th class="text-center">رشته</th>
                         <th class="text-center">اقدامات</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                @if(is_countable($cities))
-                    @foreach($cities as $city)
+                @if(is_countable($teachers))
+                    @foreach($teachers as $teacher)
                         <tr>
                             <td class="text-center">{{ $loop->index+1 }}</td>
                             <td class="text-center">
@@ -44,23 +44,23 @@
                                 @else
                                     <div class="position-absolute start-0 top-0 w-4px h-100 rounded-2 bg-info"></div>
                                 @endif
-                                    <a href="#" class="mb-1 text-dark text-hover-primary fw-bolder"> {{ $city->title ?? '-' }}</a>
+                                    <a href="#" class="mb-1 text-dark text-hover-primary fw-bolder"> {{ $teacher->name }}</a>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="position-relative ps-6 pe-3 py-2">
-                                    <span class="mb-1 text-dark"> {{ $city->slug ?? '-' }}</span>
+                                    <span class="mb-1 text-dark"> {{ $teacher->email }}</span>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="position-relative ps-6 pe-3 py-2">
-                                    <span class="mb-1 text-dark"> {{ $city->country->title ?? '-' }}</span>
+                                    <span class="mb-1 text-dark"> {{ $teacher->field->title }}</span>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="btn btn-group-sm">
-                                    @include('livewire.admin.city.update')
-                                    @include('livewire.admin.city.delete')
+                                    @include('livewire.admin.teacher.update')
+                                    @include('livewire.admin.teacher.delete')
                                 </div>
                             </td>
                         </tr>
@@ -72,7 +72,7 @@
             </table>
         </div>
         <div class="mt-5">
-            {{ $cities->links('vendor.livewire.bootstrap') }}
+            {{ $teachers->links('vendor.livewire.bootstrap') }}
          </div>
     </div>
 </div>
