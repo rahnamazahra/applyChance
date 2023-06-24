@@ -17,7 +17,7 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.teacher.index', [ 'fields' => Field::pluck('id', 'title'), 'teachers' => Teacher::where('name', 'like', $searchTerm)->orWhere('email', $searchTerm)->paginate(1)]);
+        return view('livewire.admin.teacher.index', [ 'fields' => Field::pluck('id', 'title'), 'teachers' => Teacher::where('name', 'like', $searchTerm)->orWhere('email', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
@@ -49,12 +49,12 @@ class Index extends Component
                 'name'     => $this->name,
                 'email'    => $this->email
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->addTeacher = false;
             $this->resetFields();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function editTeacher($id)
@@ -73,7 +73,7 @@ class Index extends Component
                 $this->addTeacher    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function updateTeacher()
@@ -85,12 +85,12 @@ class Index extends Component
                 'name'     => $this->name,
                 'email'    => $this->email
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->resetFields();
             $this->updateTeacher = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function cancelTeacher()
@@ -109,7 +109,7 @@ class Index extends Component
                 $this->TeacherId = $Teacher->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function deleteTeacher()
@@ -118,10 +118,10 @@ class Index extends Component
             Teacher::find($this->TeacherId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
 
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
 }

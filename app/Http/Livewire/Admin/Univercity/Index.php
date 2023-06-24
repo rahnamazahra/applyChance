@@ -29,7 +29,7 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.univercity.index', [ 'countries' => Country::pluck('id', 'title'), 'univercities' => Univercity::where('title', 'like', $searchTerm)->paginate(1)]);
+        return view('livewire.admin.univercity.index', [ 'countries' => Country::pluck('id', 'title'), 'univercities' => Univercity::where('title', 'like', $searchTerm)->orWhere('slug', 'like', $searchTerm)->paginate(1)]);
     }
 
     public function updatedCountryId($countryId)
@@ -79,12 +79,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug,
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->addUnivercity = false;
             $this->resetFields();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function editUnivercity($id)
@@ -104,13 +104,14 @@ class Index extends Component
                 $this->addUnivercity    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
 
     public function updateUnivercity()
     {
         $this->validate();
+
         try {
             Univercity::whereId($this->univercityId)->update([
                 'city_id'    => $this->city_id,
@@ -118,12 +119,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->resetFields();
             $this->updateUnivercity = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function cancelUnivercity()
@@ -142,7 +143,7 @@ class Index extends Component
                 $this->univercityId = $Univercity->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function deleteUnivercity()
@@ -151,10 +152,10 @@ class Index extends Component
             Univercity::find($this->univercityId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
 
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
 

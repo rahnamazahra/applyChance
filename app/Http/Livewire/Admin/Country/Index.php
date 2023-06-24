@@ -18,7 +18,7 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.country.index', ['countries' => Country::where('title', 'like', $searchTerm)->paginate(1)]);
+        return view('livewire.admin.country.index', ['countries' => Country::where('title', 'like', $searchTerm)->orWhere('slug', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
@@ -46,12 +46,12 @@ class Index extends Component
                 'title' => $this->title,
                 'slug'  => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->resetFields();
             $this->addCountry = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function editCountry($id)
@@ -69,7 +69,7 @@ class Index extends Component
                 $this->addCountry    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function updateCountry()
@@ -80,12 +80,12 @@ class Index extends Component
                 'title' => $this->title,
                 'slug'  => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->resetFields();
             $this->updateCountry = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function cancelCountry()
@@ -104,7 +104,7 @@ class Index extends Component
                 $this->countryId = $country->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function deleteCountry()
@@ -113,10 +113,10 @@ class Index extends Component
             Country::find($this->countryId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
 
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
 }

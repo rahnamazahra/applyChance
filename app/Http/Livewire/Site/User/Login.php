@@ -26,7 +26,7 @@ class Login extends Component
 
         if($user === null)
         {
-            $this->emit('toast', 'error', 'این شماره موبایل ثبت نشده است', '#FFFFFF' ,'#CB4335');
+            $this->emit('toast', 'error', 'این شماره موبایل ثبت نشده است');
         }
         else
         {
@@ -35,7 +35,7 @@ class Login extends Component
             $code = 1234;
             User::where('phone', $phone)->update(['password' => Hash::make($code)]);   // Save code in database
             User::sendCode($phone, $code);  // Send SMS
-            $this->emit('toast', 'success', 'کد پیامکی برای شما ارسال شد', '#FFFFFF' ,'#229954');
+            $this->emit('toast', 'success', 'کد پیامکی برای شما ارسال شد');
             to_route('admin.home');
             return to_route('verify', $user->id);
         }

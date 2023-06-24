@@ -2,6 +2,10 @@ html,body {
     direction: rtl
 }
 
+p, h1, h2, h3, h4, h5, h6, input, select, textarea, a, span, li,th, td, tr, button, label,div {
+    font-family: iranyekan !important;
+}
+
 jdp-container {
     z-index: 9999 !important
 }

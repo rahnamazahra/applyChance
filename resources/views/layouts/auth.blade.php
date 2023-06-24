@@ -9,10 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:site_name" content="apply" />
     <link rel="shortcut icon" href="" />
-    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/global/fonts/yekan-perrsian-numeral/font.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/plugins/global/plugins.bundle.rtl.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/style.bundle.rtl.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/style.css') }}"/>
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/global/fonts/yekan-perrsian-numeral/font.css') }}"/>
+    <!--end::Fonts-->
     @vite('resources/css/app.css')
     @livewireStyles
 </head>

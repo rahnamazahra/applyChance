@@ -18,7 +18,7 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.city.index', [ 'countries' => Country::pluck('id', 'title'), 'cities' => City::where('title', 'like', $searchTerm)->paginate(1)]);
+        return view('livewire.admin.city.index', [ 'countries' => Country::pluck('id', 'title'), 'cities' => City::where('title', 'like', $searchTerm)->orWhere('slug', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
@@ -50,12 +50,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->addCity = false;
             $this->resetFields();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function editCity($id)
@@ -74,7 +74,7 @@ class Index extends Component
                 $this->addCity    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function updateCity()
@@ -86,12 +86,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت ');
             $this->resetFields();
             $this->updateCity = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function cancelCity()
@@ -110,7 +110,7 @@ class Index extends Component
                 $this->CityId = $City->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function deleteCity()
@@ -119,10 +119,10 @@ class Index extends Component
             City::find($this->CityId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
 
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
 }

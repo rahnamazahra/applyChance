@@ -18,7 +18,7 @@ class Index extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
-        return view('livewire.admin.category.index', ['categories' => Category::where('title', 'like', $searchTerm)->paginate(1)]);
+        return view('livewire.admin.category.index', ['categories' => Category::where('title', 'like', $searchTerm)->orWhere('slug', 'like', $searchTerm)->paginate(1)]);
     }
 
     protected $rules = [
@@ -47,12 +47,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->addCategory = false;
             $this->resetCategorys();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function editCategory($id)
@@ -70,7 +70,7 @@ class Index extends Component
                 $this->addCategory    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function updateCategory()
@@ -81,12 +81,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
             $this->resetCategorys();
             $this->updateCategory = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function cancelCategory()
@@ -105,7 +105,7 @@ class Index extends Component
                 $this->CategoryId = $Category->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
     public function deleteCategory()
@@ -114,10 +114,10 @@ class Index extends Component
             Category::find($this->CategoryId)->delete();
             $this->resetCategorys();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد', '#FFFFFF', '#229954');
+            $this->emit('toast', 'success', 'باموفقیت انجام شد');
 
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است', '#FFFFFF', '#CB4335');
+            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
         }
     }
 }
