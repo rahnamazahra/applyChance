@@ -20,7 +20,7 @@
                     <!--end::Label-->
                     <!--begin::Input group-->
                     <div class="d-flex flex-wrap flex-stack">
-                        <input type="text" class="form-control form-control-lg form-control-solid" id="password" wire:model.defer="password" />
+                        <input type="password" class="form-control form-control-lg form-control-solid" id="password" wire:model.defer="password" />
                     </div>
                     <!--begin::Input group-->
                 </div>

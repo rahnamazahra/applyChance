@@ -15,8 +15,9 @@ class City extends Model
     {
         return $this->belongsTo(Country::class);
     }
-     public function univercities()
+    public function univercities()
     {
         return $this->hasMany(Univercity::class, 'city_id');
     }
+    
 }

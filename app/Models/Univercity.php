@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Univercity extends Model
 {
     use HasFactory;
-    protected $table = 'univercities';
-    protected $fillable = ['country_id', 'city_id', 'title', 'slug'];
-    public $timestamps = false;
+    protected $table      = 'univercities';
+    protected $fillable   = ['country_id', 'city_id', 'title', 'slug'];
+    public    $timestamps = false;
 
     public function country()
     {
@@ -20,5 +20,10 @@ class Univercity extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
     }
 }

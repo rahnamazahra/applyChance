@@ -19,7 +19,7 @@
             <form>
                 <div class="modal-body">
                     <div class="col-md-12 fv-row">
-                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">هنوان تحصیلی</label>
+                        <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">عنوان تحصیلی</label>
                         <input type="text" class="form-control form-control-solid" wire:model.defer="title"/>
                     </div>
                     <div class="col-md-12 fv-row">

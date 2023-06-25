@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('grade_id');
             $table->unsignedBigInteger('field_id');
             $table->string('title');
+            $table->integer('deadline');
+            $table->date('published');
             $table->text('description');
             $table->foreign('field_id')->references('id')->on('fields')->cascadeOnDelete();
             $table->foreign('grade_id')->references('id')->on('grades')->cascadeOnDelete();

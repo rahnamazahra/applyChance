@@ -216,5 +216,11 @@ return [
         'slug'                  => 'برچسب لاتین',
         'project_id'            => 'پروژه',
         'subproject_id'         => 'زیرپروژه',
+        'published'             => 'تاریخ انتشار',
+        'field_id'              => 'رشته تحصیلی',
+        'grade_id'              => 'مقطع تحصیلی',
+        'univercity_id'         => 'دانشگاه',
+        'city_id'               => 'شهر',
+        'country_id'            => 'کشور'
     ],
 ];

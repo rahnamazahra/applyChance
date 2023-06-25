@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html direction="rtl" dir="rtl" lang="fa" style="direction: rtl">
+<html dir="rtl" lang="fa">
 <!--begin::Head-->
 <head>
     <title>@yield('title')</title>
