@@ -5,8 +5,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
-    timer: 7000,
-    timerProgressBar: true,
+    showCloseButton: true,
     didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
         toast.addEventListener("mouseleave", Swal.resumeTimer);
@@ -14,10 +13,11 @@ const Toast = Swal.mixin({
 });
 
 document.addEventListener("livewire:load", () => {
-    Livewire.on("toast", (type, message) => {
+    Livewire.on("toast", (type, message, title) => {
         Toast.fire({
             icon: type,
-            title: message,
+            title: title,
+            text: message,
         });
     });
 });

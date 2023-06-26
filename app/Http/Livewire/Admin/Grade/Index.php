@@ -46,12 +46,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug,
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ثبت آیتم جدید باموفقیت انجام شد', 'موفقیت آمیز');
             $this->addGrade = false;
             $this->resetFields();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function editGrade($id)
@@ -69,7 +69,7 @@ class Index extends Component
                 $this->addGrade    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function updateGrade()
@@ -80,12 +80,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug,
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ویرایش آیتم باموفقیت انجام شد', 'موفقیت آمیز');
             $this->resetFields();
             $this->updateGrade = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function cancelGrade()
@@ -104,7 +104,7 @@ class Index extends Component
                 $this->GradeId = $Grade->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function deleteGrade()
@@ -113,10 +113,9 @@ class Index extends Component
             Grade::find($this->GradeId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
-
+            $this->emit('toast', 'success', 'درخواست شما برای حذف آیتم باموفقیت انجام شد', 'موفقیت آمیز');
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
 }

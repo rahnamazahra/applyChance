@@ -49,12 +49,12 @@ class Index extends Component
                 'name'     => $this->name,
                 'email'    => $this->email
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ثبت آیتم جدید باموفقیت انجام شد', 'موفقیت آمیز');
             $this->addTeacher = false;
             $this->resetFields();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function editTeacher($id)
@@ -73,7 +73,7 @@ class Index extends Component
                 $this->addTeacher    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function updateTeacher()
@@ -85,12 +85,12 @@ class Index extends Component
                 'name'     => $this->name,
                 'email'    => $this->email
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ویرایش آیتم باموفقیت انجام شد', 'موفقیت آمیز');
             $this->resetFields();
             $this->updateTeacher = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function cancelTeacher()
@@ -109,7 +109,7 @@ class Index extends Component
                 $this->TeacherId = $Teacher->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function deleteTeacher()
@@ -118,10 +118,9 @@ class Index extends Component
             Teacher::find($this->TeacherId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
-
+            $this->emit('toast', 'success', 'درخواست شما برای حذف آیتم باموفقیت انجام شد', 'موفقیت آمیز');
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
 }

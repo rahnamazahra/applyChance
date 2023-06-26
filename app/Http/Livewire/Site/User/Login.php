@@ -26,17 +26,16 @@ class Login extends Component
 
         if($user === null)
         {
-            $this->emit('toast', 'error', 'این شماره موبایل ثبت نشده است');
+            $this->emit('toast', 'error', 'شماره موبایل غیرفعال است', 'خطا');
         }
         else
         {
             $phone = $user->phone;
-            $code  = mt_rand(1111, 9999);    // Generate code
-            //$code = 1234;
-            User::where('phone', $phone)->update(['password' => Hash::make($code)]);   // Save code in database
-            User::sendCode($phone, $code);  // Send SMS
-            $this->emit('toast', 'success', 'کد پیامکی برای شما ارسال شد');
-            to_route('admin.home');
+            //$code  = mt_rand(1111, 9999);    // Generate code
+            $code = 1234;
+            User::where('phone', $phone)->update(['password' => Hash::make($code)]);
+            User::sendCode($phone, $code);
+            $this->emit('toast', 'success', 'ما یک کد فعال سازی به تلفن همراه وارد شده ارسال کردیم', 'موفقیت آمیز');
             return to_route('verify', $user->id);
         }
 

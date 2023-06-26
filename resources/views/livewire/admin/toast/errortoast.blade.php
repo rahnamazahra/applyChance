@@ -3,8 +3,9 @@
     {
         foreach ($errors->all() as $error)
         {
-            $this->emit('toast', 'error', $error, '#FFFFFF' ,'#CB4335');
-
+            $this->emit('toast', 'error', $error, 'خطا');
         }
+        $this->emit('modalClosed');
+        $this->resetErrorBag();
     }
 ?>

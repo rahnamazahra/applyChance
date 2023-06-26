@@ -65,9 +65,9 @@ class Index extends Component
     public function createPosition()
     {
         $this->validate();
+        
         try {
-            if ($this->published != NULL)
-            {
+            if ($this->published != null) {
                 $this->published = Jalalian::fromFormat('Y/m/d', $this->published)->toCarbon();
             }
             Position::create([
@@ -79,12 +79,12 @@ class Index extends Component
                 'published'     => $this->published,
                 'description'   => $this->description
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+        $this->emit('toast', 'success', 'درخواست شما برای ثبت آیتم جدید باموفقیت انجام شد', 'موفقیت آمیز');
             $this->resetFields();
             $this->addPosition = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function editPosition($id)
@@ -111,14 +111,13 @@ class Index extends Component
             }
 
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
 
     public function updatePosition()
     {
         $this->validate();
-
         try {
             if ($this->published != NULL)
             {
@@ -133,12 +132,12 @@ class Index extends Component
                 'published'     => $this->published,
                 'description'   => $this->description
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ویرایش آیتم باموفقیت انجام شد', 'موفقیت آمیز');
             $this->resetFields();
             $this->updatePosition = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function cancelPosition()
@@ -148,7 +147,7 @@ class Index extends Component
         $this->resetFields();
         $this->render();
     }
-      public function ConfirmDeletePosition($id)
+    public function ConfirmDeletePosition($id)
     {
         try {
             $position = Position::findOrFail($id);
@@ -157,7 +156,7 @@ class Index extends Component
                 $this->positionId = $position->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
 
@@ -167,10 +166,9 @@ class Index extends Component
             Position::find($this->positionId)->delete();
             $this->resetFields();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
-
+            $this->emit('toast', 'success', 'درخواست شما برای حذف آیتم باموفقیت انجام شد', 'موفقیت آمیز');
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
 }

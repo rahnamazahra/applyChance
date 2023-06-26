@@ -47,12 +47,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ثبت آیتم جدید با موفقیت  انجام شد', 'موفقیت آمیز');
             $this->addCategory = false;
             $this->resetCategorys();
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function editCategory($id)
@@ -70,7 +70,7 @@ class Index extends Component
                 $this->addCategory    = false;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function updateCategory()
@@ -81,12 +81,12 @@ class Index extends Component
                 'title'      => $this->title,
                 'slug'       => $this->slug
             ]);
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
+            $this->emit('toast', 'success', 'درخواست شما برای ویرایش آیتم باموفقیت انجام شد', 'موفقیت آمیز');
             $this->resetCategorys();
             $this->updateCategory = false;
             $this->render();
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function cancelCategory()
@@ -105,19 +105,19 @@ class Index extends Component
                 $this->CategoryId = $Category->id;
             }
         } catch (\Exception $ex) {
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
     public function deleteCategory()
     {
         try {
             Category::find($this->CategoryId)->delete();
+            $this->emit('toast', 'success', 'درخواست شما برای حذف آیتم باموفقیت انجام شد', 'موفقیت آمیز');
             $this->resetCategorys();
             $this->render();
-            $this->emit('toast', 'success', 'باموفقیت انجام شد');
 
         } catch (\Exception $e){
-            $this->emit('toast', 'error', 'مشکلی به وجود آمده است');
+            $this->emit('toast', 'error', 'اشکالی ناشناخته به وجود آمده است', 'خطا');
         }
     }
 }
