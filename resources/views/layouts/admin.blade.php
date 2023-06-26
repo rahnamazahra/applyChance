@@ -3,7 +3,6 @@
     <head>
         <title>@yield('title')|پنل مدیریت</title>
         @include('livewire.admin.layouts.head')
-        @yield('custome-style')
     </head>
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" data-kt-app-layout="light-sidebar" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--begin::Main-->
@@ -38,7 +37,7 @@
 		</div>
         <!--begin::Javascript-->
 	    @include('livewire.admin.layouts.scripts')
-        @yield('custom_scripts')
+        @stack('custom-scripts')
     	<!--end::Javascript-->
 	</body>
 </html>

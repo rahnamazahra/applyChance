@@ -31,8 +31,8 @@ class Login extends Component
         else
         {
             $phone = $user->phone;
-            //$code  = mt_rand(1111, 9999);    // Generate code
-            $code = 1234;
+            $code  = mt_rand(1111, 9999);    // Generate code
+            //$code = 1234;
             User::where('phone', $phone)->update(['password' => Hash::make($code)]);   // Save code in database
             User::sendCode($phone, $code);  // Send SMS
             $this->emit('toast', 'success', 'کد پیامکی برای شما ارسال شد');

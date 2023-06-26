@@ -69,11 +69,11 @@
                 </div>
                 <div class="col-md-12 fv-row">
                     <label for="published"  class="required d-flex align-items-center fs-6 fw-bold mb-2">تاریخ انتشار</label>
-                    <input type="text" class="form-control form-control-solid" id="input_date" wire:model.lazy="published" name="published" placeholder="1401/01/01" data-jdp/>
+                    <input type="text" data-jdp class="form-control form-control-solid" autocomplete="off" wire:model.lazy="published" name="published" placeholder="تاریخ انتشار را وارد نمایید"/>
                     <span id="calendar"></span>
                 </div>
                 <div class="col-md-12 fv-row">
-                    <label for="deadline"  class="d-flex align-items-center fs-6 fw-bold mb-2">مهلت (ماه)</label>
+                    <label for="deadline" class="d-flex align-items-center fs-6 fw-bold mb-2">مهلت (ماه)</label>
                     <input type="text" class="form-control form-control-solid" wire:model.lazy="deadline" name="deadline"/>
                 </div>
                 <div class="col-md-12 fv-row">

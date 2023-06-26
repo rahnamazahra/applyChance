@@ -1,5 +1,4 @@
 <button wire:click="actionMode()" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#CountryCreateModal">جدید +</button>
-
 <!--begin::Modal-->
 <div wire:ignore.self class="modal fade" id="CountryCreateModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -20,11 +19,11 @@
             <form>
             <div class="modal-body">
                 <div class="col-md-12 fv-row">
-                    <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام فارسی کشور مثل : ایران</label>
+                    <label for="title" class="required d-flex align-items-center fs-6 fw-bold mb-2">نام فارسی کشور</label>
                     <input type="text" class="form-control form-control-solid" wire:model.defer="title"/>
                 </div>
                 <div class="col-md-12 fv-row">
-                    <label for="slug"  class="required d-flex align-items-center fs-6 fw-bold mb-2">نام لاتین کشور: مثل : Iran</label>
+                    <label for="slug"  class="required d-flex align-items-center fs-6 fw-bold mb-2">نام لاتین کشور</label>
                     <input type="text" class="form-control form-control-solid" wire:model.defer="slug"/>
                 </div>
             </div>

@@ -22,3 +22,4 @@ document.addEventListener("livewire:load", () => {
     });
 });
 
+

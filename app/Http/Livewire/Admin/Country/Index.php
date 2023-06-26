@@ -33,7 +33,6 @@ class Index extends Component
     public function actionMode()
     {
         $this->resetFields();
-
         $this->addCountry    = true;
         $this->updateCountry = false;
     }
@@ -56,6 +55,7 @@ class Index extends Component
     }
     public function editCountry($id)
     {
+
         $this->resetFields();
 
         try {
